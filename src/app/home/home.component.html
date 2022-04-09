@@ -1,0 +1,25 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 id="title_pokemon" class="text-center pt-5"><b>POKéMON</b></h1>
+    </div>
+  </div>
+</div>
+<div class="container w-75">
+    <div class="row" id="search_poke">
+        <div class="col-12"id="posicio_form">
+            <form (ngSubmit)="pokemonlookingfor()" [formGroup]="pokemon">
+                <div class="mb-5">
+                  <label for="exampleInputPokemon" class="form-label text-start"><h4><b>Looking for Pokémon:</b></h4></label>
+                  <input type="text" class="form-control" id="exampleInputPokemon" formControlName="Pokemonnom" name="Pokemonnom" id="Pokemonnom" [(ngModel)]="pokemonName.pokemonName" required>
+                </div>
+                <div id="btn_poke">
+                  <button type="submit" id="pokeball_button" class="btn" [disabled]="!pokemon.valid"></button>
+                </div>
+          </form>
+        </div>
+    </div>
+</div>
+<div class="spacer"></div>
+<app-pokegroup></app-pokegroup>

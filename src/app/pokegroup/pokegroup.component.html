@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center" style="color:navy;"><b>Pokémon index</b></h2>
+        </div>
+    </div>
+    <div class="row mt-3" id="all_pokemon">
+        <div class="col-lg-4 col-sm-6 mb-4 float-left" id="card_poke" *ngFor="let poke of singlePoke | paginate: { itemsPerPage: 18, currentPage: page, totalItems: totalPokemons }">
+            <div id="card_pokemon">
+                <a [routerLink]="['pokemon/' + poke.name]" id="title_single_poke">
+                    <h3 id="name_title" class="text-center mb-2"
+                    [ngClass]="{
+                        'normal' : poke.types[0].type.name == 'normal',
+                        'fighting' : poke.types[0].type.name == 'fighting',
+                        'flying' : poke.types[0].type.name == 'flying',
+                        'poison' : poke.types[0].type.name == 'poison',
+                        'ground' : poke.types[0].type.name == 'ground',
+                        'rock' : poke.types[0].type.name == 'rock',
+                        'bug' : poke.types[0].type.name == 'bug',
+                        'ghost' : poke.types[0].type.name == 'ghost',
+                        'steel' : poke.types[0].type.name == 'steel',
+                        'fire' : poke.types[0].type.name == 'fire',
+                        'water' : poke.types[0].type.name == 'water',
+                        'grass' : poke.types[0].type.name == 'grass',
+                        'electric' : poke.types[0].type.name == 'electric',
+                        'psychic' : poke.types[0].type.name == 'psychic',
+                        'ice' : poke.types[0].type.name == 'ice',
+                        'dragon' : poke.types[0].type.name == 'dragon',
+                        'dark' : poke.types[0].type.name == 'dark',
+                        'fairy' : poke.types[0].type.name == 'fairy',
+                        'unknown' : poke.types[0].type.name == 'unknown',
+                        'shadow' : poke.types[0].type.name == 'shadow'
+                     }">{{ poke.name | titlecase | replacePipe }}</h3>
+                    <div *ngIf="poke.sprites.other.dream_world['front_default'] != null;"> <!-- else elseBlock-->
+                        <img class="image-fluid" id="imatge_poke" [src]="poke.sprites.other.dream_world['front_default']" alt="">
+                    </div>
+                    <div *ngIf="poke.sprites.other.dream_world['front_default'] == null && poke.sprites.other['official-artwork'].front_default != null;">
+                        <img class="image-fluid" id="imatge_poke" [src]="poke.sprites.other['official-artwork'].front_default" alt="">
+                    </div>
+                    <div *ngIf="poke.sprites.other.dream_world['front_default'] == null && poke.sprites.other['official-artwork'].front_default == null && poke.sprites.other.home.front_default != null;">
+                        <img class="image-fluid" id="imatge_poke" [src]="poke.sprites.other.home.front_default" alt="">
+                    </div>
+                    <div *ngIf="poke.sprites.other.dream_world['front_default'] == null && poke.sprites.other['official-artwork'].front_default == null && poke.sprites.other.home.front_default == null;">
+                        <img class="image-fluid" id="imatge_poke" src="../../assets/img/pngegg.png" alt="">
+                    </div>
+                    <p class="text-center mb-2"
+                    [ngClass]="{
+                        'normal' : poke.types[0].type.name == 'normal',
+                        'fighting' : poke.types[0].type.name == 'fighting',
+                        'flying' : poke.types[0].type.name == 'flying',
+                        'poison' : poke.types[0].type.name == 'poison',
+                        'ground' : poke.types[0].type.name == 'ground',
+                        'rock' : poke.types[0].type.name == 'rock',
+                        'bug' : poke.types[0].type.name == 'bug',
+                        'ghost' : poke.types[0].type.name == 'ghost',
+                        'steel' : poke.types[0].type.name == 'steel',
+                        'fire' : poke.types[0].type.name == 'fire',
+                        'water' : poke.types[0].type.name == 'water',
+                        'grass' : poke.types[0].type.name == 'grass',
+                        'electric' : poke.types[0].type.name == 'electric',
+                        'psychic' : poke.types[0].type.name == 'psychic',
+                        'ice' : poke.types[0].type.name == 'ice',
+                        'dragon' : poke.types[0].type.name == 'dragon',
+                        'dark' : poke.types[0].type.name == 'dark',
+                        'fairy' : poke.types[0].type.name == 'fairy',
+                        'unknown' : poke.types[0].type.name == 'unknown',
+                        'shadow' : poke.types[0].type.name == 'shadow'
+                     }">#{{ poke.id }} | height: {{ poke.height /10 }}m | weight: {{ poke.weight /10 }}kg</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center mt-5">
+        <pagination-controls style="color:navy;" (pageChange)="page = $event; singlePoke = []; groupOfPokemon();"></pagination-controls>
+    </div>
+</div>

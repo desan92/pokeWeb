@@ -1,0 +1,96 @@
+.spacer{
+    margin-top: 70px;
+}
+
+#pokedex{
+    display: flex;
+}
+
+#name_pokemon{
+    background-color: white;
+}
+
+.img_poke{
+    position: relative;
+    background-color: red;
+    padding: 75px;
+    border-right: 5px solid black;
+}
+
+.img_poke::before{
+    content: '';
+    position: absolute;
+    display: block;
+    height: 80px;
+    width: 80px;
+    left: calc(100% - 35px);
+    bottom: calc(50% - 40px);
+    background-color: black;
+    border-radius: 50%;
+}
+
+.img_poke::after{
+    content: '';
+    position: absolute;
+    display: block;
+    height: 70px;
+    width: 70px;
+    left: calc(100% - 30px);
+    bottom: calc(50% - 35px);
+    background-color: white;
+    border-radius: 50%;
+}
+
+#imatge_poke{
+    height: 100%;
+    /* width: 100%; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.info_poke{
+    background-color: white;
+    padding: 15px;
+    border-left: 5px solid black;
+}
+
+.info_pokemon_all p b{
+    color: navy;
+}
+
+.efect{
+    text-align: justify;
+}
+
+.accordion-body ul p b{
+    color: navy;
+}
+
+@media only screen and (max-width: 992px){
+
+	.info_poke{
+        border-left: none;
+        border-top: 5px solid black;
+    }
+
+    .img_poke{
+        border-right: none;
+        border-bottom: 5px solid black;
+    }
+
+    .img_poke::before{
+        left: calc(50% - 35px);
+        bottom: calc(0% - 40px);
+    }
+    
+    .img_poke::after{
+        left: calc(50% - 30px);
+        bottom: calc(0% - 35px);
+    }
+
+    .info_poke .row{
+        margin-top: 50px;
+    }
+}

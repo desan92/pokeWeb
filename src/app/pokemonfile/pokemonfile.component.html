@@ -1,0 +1,79 @@
+<div class="spacer"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center" style="color:navy;"><b>Pokémon Profile:</b></h1>
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="row" id="pokedex">
+        <div class="col-lg-4 img_poke" *ngIf="pokemon.sprites.other.dream_world['front_default'] != null;"> <!-- else elseBlock-->
+            <img class="image-fluid" id="imatge_poke" [src]="pokemon.sprites.other.dream_world['front_default']" alt="">
+        </div>
+        <div class="col-lg-4 img_poke" *ngIf="pokemon.sprites.other.dream_world['front_default'] == null && pokemon.sprites.other['official-artwork'].front_default != null;">
+            <img class="image-fluid" id="imatge_poke" [src]="pokemon.sprites.other['official-artwork'].front_default" alt="">
+        </div>
+        <div class="col-lg-4 img_poke" *ngIf="pokemon.sprites.other.dream_world['front_default'] == null && pokemon.sprites.other['official-artwork'].front_default == null && pokemon.sprites.other.home.front_default != null;">
+            <img class="image-fluid" id="imatge_poke" [src]="pokemon.sprites.other.home.front_default" alt="">
+        </div>
+        <div class="col-lg-4 img_poke" *ngIf="pokemon.sprites.other.dream_world['front_default'] == null && pokemon.sprites.other['official-artwork'].front_default == null && pokemon.sprites.other.home.front_default == null;">
+            <img class="image-fluid" id="imatge_poke" src="../../assets/img/pngegg.png" alt="">
+        </div>
+        <div class="col-lg-8 info_poke">
+            <div class="row">
+                <h4 class="text-center" id="name_pokemon" style="color:navy;"><b>{{ pokemon.name | titlecase | replacePipe }}</b></h4>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-6 text-center info_pokemon_all">
+                    <p><b>Id: </b>#{{ pokemon.id }}</p>
+                    <p><b>Order: </b>{{ pokemon.order }}</p>
+                    <p><b>Height: </b>{{ pokemon.height /10 }}m</p>
+                    <p><b>Weight: </b>{{ pokemon.weight /10 }}kg</p>
+                    <p><b>Base experience: </b>{{ pokemon.base_experience}}</p>
+                    <p><b>Type: </b> <span *ngFor="let type of type; let last = last;">{{ type.type.name }}{{last ? '' : ', '}}</span></p>
+                </div>
+                <div class="col-lg-6 text-center info_pokemon_all">
+                    <p><b>{{ pokemon.stats[0].stat.name | titlecase | replacePipe }}: </b>{{ pokemon.stats[0].base_stat }}</p>
+                    <p><b>{{ pokemon.stats[1].stat.name | titlecase | replacePipe }}: </b>{{ pokemon.stats[1].base_stat }}</p>
+                    <p><b>{{ pokemon.stats[2].stat.name | titlecase | replacePipe }}: </b>{{ pokemon.stats[2].base_stat }}</p>
+                    <p><b>{{ pokemon.stats[3].stat.name | titlecase | replacePipe }}:</b> {{ pokemon.stats[3].base_stat }}</p>
+                    <p><b>{{ pokemon.stats[4].stat.name | titlecase | replacePipe }}:</b> {{ pokemon.stats[4].base_stat }}</p>
+                    <p><b>{{ pokemon.stats[5].stat.name | titlecase | replacePipe }}:</b> {{ pokemon.stats[5].base_stat }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="row">
+        <div class="col-12">
+            <div class="accordion" id="accordionContainer">
+                <div class="accordion-item" *ngFor="let move of moves; let i in index">
+                  <h2 class="accordion-header" [id]="'heading' + move.i">
+                    <button class="accordion-button text-light" style="background-color: red;" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + move.id" [attr.aria-expanded]="false" [attr.aria-controls]="'collapse' + move.id">
+                     Atack move: #{{ move.id }} {{ move.name | titlecase | replacePipe }}
+                    </button>
+                  </h2>
+                  <div [id]="'collapse' + move.id" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + move.id"
+                    data-bs-parent="#accordionContainer">
+                    <div class="accordion-body">
+                      <ul>
+                          <p *ngIf="move.accuracy != null"><b>Accuracy: </b>{{ move.accuracy }}</p>
+                          <p *ngIf="move.power != null"><b>Power: </b>{{ move.power }}</p>
+                          <p *ngIf="move.pp != null"><b>PP: </b>{{ move.pp }}</p>
+                          <p *ngIf="move.type.name != null"><b>Type: </b>{{ move.type.name }}</p>
+                          <p class="efect" *ngIf="move.effect_entries[0].effect != null"><b>Effect: </b>{{ move.effect_entries[0].effect }}</p>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="row">
+        <div class="col-12">
+            <a routerLink="" class="btn btn-danger float-end">Back</a>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</div>
